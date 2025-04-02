@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:shopsmart_user/consts/validator.dart';
 import 'package:shopsmart_user/widgets/app_name_widgets.dart';
 import 'package:shopsmart_user/widgets/subtitle_text.dart';
 import 'package:shopsmart_user/widgets/title_text.dart';
 
+import '../../widgets/auth/image_picker_widget.dart';
 
 class RegisterScreen extends StatefulWidget {
   static const routName = "/RegisterScreen";
@@ -27,6 +29,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       _repeatPasswordFocusNode;
 
   final _formkey = GlobalKey<FormState>();
+  XFile? _pickedImage;
   @override
   void initState() {
     _nameController = TextEditingController();
@@ -64,6 +67,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
@@ -75,27 +79,30 @@ class _RegisterScreenState extends State<RegisterScreen> {
             child: Column(
               children: [
                 // const BackButton(),
-                const SizedBox(
-                  height: 60,
-                ),
-                const AppNameWidgets(
-                  fontSize: 30,
-                ),
-                const SizedBox(
-                  height: 30,
-                ),
+                const SizedBox(height: 60),
+                const AppNameWidgets(fontSize: 30),
+                const SizedBox(height: 30),
                 const Align(
-                    alignment: Alignment.centerLeft,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        TitlesTextWidget(label: "Welcome back!"),
-                        SubtitleTextWidget(label: "Your welcome message"),
-                      ],
-                    )),
-                const SizedBox(
-                  height: 30,
+                  alignment: Alignment.centerLeft,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      TitlesTextWidget(label: "Welcome back!"),
+                      SubtitleTextWidget(label: "Your welcome message"),
+                    ],
+                  ),
                 ),
+                const SizedBox(height: 30),
+                SizedBox(
+                  height: size.width * 0.3,
+                  width: size.width * 0.3,
+                  child: PickImageWidget(
+                    pickedImage: _pickedImage,
+                    function: () {},
+                  ),
+                ),
+
+                const SizedBox(height: 30),
                 Form(
                   key: _formkey,
                   child: Column(
@@ -108,9 +115,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         keyboardType: TextInputType.name,
                         decoration: const InputDecoration(
                           hintText: 'Full Name',
-                          prefixIcon: Icon(
-                            Icons.person,
-                          ),
+                          prefixIcon: Icon(Icons.person),
                         ),
                         onFieldSubmitted: (value) {
                           FocusScope.of(context).requestFocus(_emailFocusNode);
@@ -119,9 +124,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           return MyValidators.displayNamevalidator(value);
                         },
                       ),
-                      const SizedBox(
-                        height: 16.0,
-                      ),
+                      const SizedBox(height: 16.0),
                       TextFormField(
                         controller: _emailController,
                         focusNode: _emailFocusNode,
@@ -129,21 +132,18 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         keyboardType: TextInputType.emailAddress,
                         decoration: const InputDecoration(
                           hintText: "Email address",
-                          prefixIcon: Icon(
-                            IconlyLight.message,
-                          ),
+                          prefixIcon: Icon(IconlyLight.message),
                         ),
                         onFieldSubmitted: (value) {
-                          FocusScope.of(context)
-                              .requestFocus(_passwordFocusNode);
+                          FocusScope.of(
+                            context,
+                          ).requestFocus(_passwordFocusNode);
                         },
                         validator: (value) {
                           return MyValidators.emailValidator(value);
                         },
                       ),
-                      const SizedBox(
-                        height: 16.0,
-                      ),
+                      const SizedBox(height: 16.0),
                       TextFormField(
                         controller: _passwordController,
                         focusNode: _passwordFocusNode,
@@ -152,9 +152,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         obscureText: obscureText,
                         decoration: InputDecoration(
                           hintText: "***********",
-                          prefixIcon: const Icon(
-                            IconlyLight.lock,
-                          ),
+                          prefixIcon: const Icon(IconlyLight.lock),
                           suffixIcon: IconButton(
                             onPressed: () {
                               setState(() {
@@ -169,16 +167,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           ),
                         ),
                         onFieldSubmitted: (value) async {
-                          FocusScope.of(context)
-                              .requestFocus(_repeatPasswordFocusNode);
+                          FocusScope.of(
+                            context,
+                          ).requestFocus(_repeatPasswordFocusNode);
                         },
                         validator: (value) {
                           return MyValidators.passwordValidator(value);
                         },
                       ),
-                      const SizedBox(
-                        height: 16.0,
-                      ),
+                      const SizedBox(height: 16.0),
                       TextFormField(
                         controller: _repeatPasswordController,
                         focusNode: _repeatPasswordFocusNode,
@@ -187,9 +184,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         obscureText: obscureText,
                         decoration: InputDecoration(
                           hintText: "Repeat password",
-                          prefixIcon: const Icon(
-                            IconlyLight.lock,
-                          ),
+                          prefixIcon: const Icon(IconlyLight.lock),
                           suffixIcon: IconButton(
                             onPressed: () {
                               setState(() {
@@ -213,9 +208,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           );
                         },
                       ),
-                      const SizedBox(
-                        height: 36.0,
-                      ),
+                      const SizedBox(height: 36.0),
                       SizedBox(
                         width: double.infinity,
                         child: ElevatedButton.icon(
@@ -223,9 +216,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             padding: const EdgeInsets.all(12.0),
                             // backgroundColor: Colors.red,
                             shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(
-                                12.0,
-                              ),
+                              borderRadius: BorderRadius.circular(12.0),
                             ),
                           ),
                           icon: const Icon(IconlyLight.addUser),
