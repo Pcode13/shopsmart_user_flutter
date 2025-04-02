@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:shopsmart_user/consts/validator.dart';
+import 'package:shopsmart_user/screens/auth/register.dart';
 import 'package:shopsmart_user/widgets/app_name_widgets.dart';
 import 'package:shopsmart_user/widgets/subtitle_text.dart';
 import 'package:shopsmart_user/widgets/title_text.dart';
@@ -201,8 +202,8 @@ class _LoginScreenState extends State<LoginScreen> {
                               textDecoration: TextDecoration.underline,
                             ),
                             onPressed: () {
-                              // Navigator.of(context)
-                              //     .pushNamed(RegisterScreen.routName);
+                              Navigator.of(context)
+                                  .pushNamed(RegisterScreen.routName);
                             },
                           ),
                         ],
