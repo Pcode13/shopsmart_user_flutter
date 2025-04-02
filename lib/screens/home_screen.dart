@@ -1,41 +1,89 @@
+import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shopsmart_user/providers/theme_provider.dart';
-import 'package:shopsmart_user/widgets/subtitle_text.dart';
-import 'package:shopsmart_user/widgets/title_text.dart';
+import 'package:shopsmart_user/consts/app_constants.dart';
+import 'package:shopsmart_user/widgets/products/ctg_rounded_widget.dart';
+import 'package:shopsmart_user/widgets/products/latest_arrival.dart';
+
+import '../services/assets_manager.dart';
+import '../widgets/app_name_widgets.dart';
+import '../widgets/subtitle_text.dart';
+import '../widgets/title_text.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final themeProvider = Provider.of<ThemeProvider>(context);
-    print("Dark Mode: ${themeProvider.getIsDarkTheme}");
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              "Hello world",
-              style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 20),
-            SubtitleTextWidget(label: "Clover"),
-            const SizedBox(height: 20),
-            TitlesTextWidget(label: "Infotech Database"),
-            const SizedBox(height: 20),
-            ElevatedButton(onPressed: () {}, child: const Text("Hello world")),
-            SwitchListTile(
-              title: Text(
-                themeProvider.getIsDarkTheme ? "Dark Mode" : "Light Mode",
+      appBar: AppBar(
+        leading: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Image.asset(AssetsManager.shoppingCart),
+        ),
+        title: const AppNameWidgets(fontSize: 20),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(height: 15),
+              SizedBox(
+                height: size.height * 0.25,
+                child: ClipRRect(
+                  // borderRadius: BorderRadius.circular(50),
+                  child: Swiper(
+                    autoplay: true,
+                    itemBuilder: (BuildContext context, int index) {
+                      return Image.asset(
+                        AppConstants.bannersImages[index],
+                        fit: BoxFit.fill,
+                      );
+                    },
+                    itemCount: AppConstants.bannersImages.length,
+                    pagination: const SwiperPagination(
+                      // alignment: Alignment.center,
+                      builder: DotSwiperPaginationBuilder(
+                        activeColor: Colors.red,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                ),
               ),
-              value: themeProvider.getIsDarkTheme,
-              onChanged: (value) {
-                themeProvider.setDarkTheme(themeValue: value);
-              },
-            ),
-          ],
+              const SizedBox(height: 15.0),
+              const TitlesTextWidget(label: "Latest arrival"),
+              const SizedBox(height: 15.0),
+              SizedBox(
+                height: size.height * 0.2,
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: 10,
+                  itemBuilder: (context, index) {
+                    return const LatestArrivalProductsWidget();
+                  },
+                ),
+              ),
+              const TitlesTextWidget(label: "Categories"),
+              const SizedBox(height: 15.0),
+              GridView.count(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                crossAxisCount: 4,
+                children: List.generate(AppConstants.categoriesList.length, (
+                  index,
+                ) {
+                  return CategoryRoundedWidget(
+                    image: AppConstants.categoriesList[index].image,
+                    name: AppConstants.categoriesList[index].name,
+                  );
+                }),
+              ),
+            ],
+          ),
         ),
       ),
     );
