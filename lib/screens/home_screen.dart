@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shopsmart_user/providers/theme_provider.dart';
+import 'package:shopsmart_user/widgets/subtitle_text.dart';
+import 'package:shopsmart_user/widgets/title_text.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -14,10 +16,15 @@ class HomeScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text(
+            Text(
               "Hello world",
               style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold),
             ),
+            const SizedBox(height: 20),
+            SubtitleTextWidget(label: "Clover"),
+            const SizedBox(height: 20),
+            TitlesTextWidget(label: "Infotech Database"),
+            const SizedBox(height: 20),
             ElevatedButton(onPressed: () {}, child: const Text("Hello world")),
             SwitchListTile(
               title: Text(
