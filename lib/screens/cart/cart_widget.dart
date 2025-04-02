@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
+import 'package:shopsmart_user/screens/cart/quantity_btm_sheet.dart';
 import 'package:shopsmart_user/widgets/subtitle_text.dart';
 import 'package:shopsmart_user/widgets/title_text.dart';
-
 
 class CartWidget extends StatelessWidget {
   const CartWidget({super.key});
@@ -29,9 +29,7 @@ class CartWidget extends StatelessWidget {
                   width: size.height * 0.2,
                 ),
               ),
-              const SizedBox(
-                width: 10,
-              ),
+              const SizedBox(width: 10),
               IntrinsicWidth(
                 child: Column(
                   children: [
@@ -48,16 +46,11 @@ class CartWidget extends StatelessWidget {
                           children: [
                             IconButton(
                               onPressed: () {},
-                              icon: const Icon(
-                                Icons.clear,
-                                color: Colors.red,
-                              ),
+                              icon: const Icon(Icons.clear, color: Colors.red),
                             ),
                             IconButton(
                               onPressed: () {},
-                              icon: const Icon(
-                                IconlyLight.heart,
-                              ),
+                              icon: const Icon(IconlyLight.heart),
                             ),
                           ],
                         ),
@@ -72,7 +65,22 @@ class CartWidget extends StatelessWidget {
                         ),
                         const Spacer(),
                         OutlinedButton.icon(
-                          onPressed: () {},
+                          onPressed: () async {
+                            await showModalBottomSheet(
+                              backgroundColor:
+                                  Theme.of(context).scaffoldBackgroundColor,
+                              shape: const RoundedRectangleBorder(
+                                borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(30),
+                                  topRight: Radius.circular(30),
+                                ),
+                              ),
+                              context: context,
+                              builder: (context) {
+                                return const QuantityBottomSheetWidget();
+                              },
+                            );
+                          },
                           icon: const Icon(IconlyLight.arrowDown2),
                           label: const Text("Qty: 6"),
                           style: OutlinedButton.styleFrom(
@@ -83,10 +91,10 @@ class CartWidget extends StatelessWidget {
                           ),
                         ),
                       ],
-                    )
+                    ),
                   ],
                 ),
-              )
+              ),
             ],
           ),
         ),
