@@ -1,6 +1,7 @@
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:shopsmart_user/consts/app_constants.dart';
+import 'package:shopsmart_user/screens/inner_screen/product_details.dart';
 
 class ProductWidget extends StatefulWidget {
   const ProductWidget({Key? key}) : super(key: key);
@@ -16,7 +17,7 @@ class _ProductWidgetState extends State<ProductWidget> {
       padding: const EdgeInsets.all(0.0),
       child: GestureDetector(
         onTap: () {
-          print("ToDo add the navigate to the product details screen");
+          Navigator.pushNamed(context, ProductDetailsScreen.routName);
         },
         child: Column(
           children: [
