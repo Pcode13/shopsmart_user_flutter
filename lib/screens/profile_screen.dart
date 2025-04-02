@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:shopsmart_user/providers/theme_provider.dart';
 import 'package:shopsmart_user/screens/inner_screen/viewed_recently.dart';
 import 'package:shopsmart_user/screens/inner_screen/wishlist.dart';
+import 'package:shopsmart_user/services/my_app_functions.dart';
 import 'package:shopsmart_user/widgets/app_name_widgets.dart';
 import 'package:shopsmart_user/widgets/subtitle_text.dart';
 import 'package:shopsmart_user/widgets/title_text.dart';
@@ -132,7 +133,14 @@ class ProfileScreen extends StatelessWidget {
                   borderRadius: BorderRadius.circular(30.0),
                 ),
               ),
-              onPressed: () {},
+              onPressed: () async {
+                await MyAppFunctions.showErrorOrWarningDialog(
+                  context: context,
+                  subtitle: "Are you sure you want to signout",
+                  fct: () {},
+                  isError: true,
+                );
+              },
               icon: const Icon(Icons.login),
               label: const Text("Login"),
             ),
