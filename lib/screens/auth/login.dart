@@ -5,6 +5,8 @@ import 'package:shopsmart_user/widgets/app_name_widgets.dart';
 import 'package:shopsmart_user/widgets/subtitle_text.dart';
 import 'package:shopsmart_user/widgets/title_text.dart';
 
+import '../../widgets/auth/google_btn.dart';
+
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
@@ -13,6 +15,7 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  bool obscureText = true;
   late final TextEditingController _emailController;
   late final TextEditingController _passwordController;
 
@@ -92,13 +95,26 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       const SizedBox(height: 16.0),
                       TextFormField(
+                        obscureText: obscureText,
                         controller: _passwordController,
                         focusNode: _passwordFocusNode,
                         textInputAction: TextInputAction.done,
                         keyboardType: TextInputType.visiblePassword,
-                        decoration: const InputDecoration(
+                        decoration: InputDecoration(
+                          suffixIcon: IconButton(
+                            onPressed: () {
+                              setState(() {
+                                obscureText = !obscureText;
+                              });
+                            },
+                            icon: Icon(
+                              obscureText
+                                  ? Icons.visibility
+                                  : Icons.visibility_off,
+                            ),
+                          ),
                           hintText: "***********",
-                          prefixIcon: Icon(IconlyLight.lock),
+                          prefixIcon: const Icon(IconlyLight.lock),
                         ),
                         onFieldSubmitted: (value) async {
                           await _loginFct();
@@ -142,33 +158,52 @@ class _LoginScreenState extends State<LoginScreen> {
                         label: "Or connect using".toUpperCase(),
                       ),
                       const SizedBox(height: 16.0),
-                      Row(
-                        children: [
-                          ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              padding: const EdgeInsets.all(12.0),
-                              // backgroundColor: Colors.red,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(12.0),
+                      SizedBox(
+                        height: kBottomNavigationBarHeight + 10,
+                        child: Row(
+                          children: [
+                            const Expanded(
+                              flex: 2,
+                              child: SizedBox(
+                                height: kBottomNavigationBarHeight,
+                                child: FittedBox(child: GoogleButton()),
                               ),
                             ),
-                            child: const Text("Guest?"),
-                            onPressed: () async {},
-                          ),
-                        ],
+                            const SizedBox(width: 8),
+                            Expanded(
+                              child: SizedBox(
+                                height: kBottomNavigationBarHeight,
+                                child: ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    padding: const EdgeInsets.all(12.0),
+                                    // backgroundColor: Colors.red,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(12.0),
+                                    ),
+                                  ),
+                                  child: const Text("Guest?"),
+                                  onPressed: () async {},
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                       const SizedBox(height: 16.0),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          SubtitleTextWidget(label: "New here?"),
+                          const SubtitleTextWidget(label: "New here?"),
                           TextButton(
-                            onPressed: () {},
                             child: const SubtitleTextWidget(
-                              label: "Forgot password?",
+                              label: "Sign up",
                               fontStyle: FontStyle.italic,
                               textDecoration: TextDecoration.underline,
                             ),
+                            onPressed: () {
+                              // Navigator.of(context)
+                              //     .pushNamed(RegisterScreen.routName);
+                            },
                           ),
                         ],
                       ),
