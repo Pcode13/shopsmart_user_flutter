@@ -13,7 +13,7 @@ class RootScreen extends StatefulWidget {
 
 class _RootScreenState extends State<RootScreen> {
   late List<Widget> screens;
-  int currentScreen = 0;
+  int currentScreen = 3;
   late PageController controller;
 
   @override
@@ -31,7 +31,7 @@ class _RootScreenState extends State<RootScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body:PageView(
+      body: PageView(
         physics: const NeverScrollableScrollPhysics(),
         controller: controller,
         children: screens,
@@ -39,6 +39,7 @@ class _RootScreenState extends State<RootScreen> {
       bottomNavigationBar: NavigationBar(
         selectedIndex: currentScreen,
         elevation: 10,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         height: kBottomNavigationBarHeight,
         onDestinationSelected: (index) {
           setState(() {
