@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:provider/provider.dart';
 import 'package:shopsmart_user/providers/theme_provider.dart';
+import 'package:shopsmart_user/widgets/app_name_widgets.dart';
 import 'package:shopsmart_user/widgets/subtitle_text.dart';
 import 'package:shopsmart_user/widgets/title_text.dart';
 import 'package:shopsmart_user/services/assets_manager.dart';
@@ -18,7 +19,7 @@ class ProfileScreen extends StatelessWidget {
           padding: const EdgeInsets.all(8.0),
           child: Image.asset(AssetsManager.shoppingCart), // Fixed typo here
         ),
-        title: Text("Profile"),
+        title: AppNameWidgets(fontSize: 25),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
