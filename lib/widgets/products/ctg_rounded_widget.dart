@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:shopsmart_user/widgets/subtitle_text.dart';
 
 class CategoryRoundedWidget extends StatelessWidget {

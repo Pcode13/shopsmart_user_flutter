@@ -6,7 +6,7 @@ import 'package:shopsmart_user/widgets/empty_bag.dart';
 import 'package:shopsmart_user/widgets/title_text.dart';
 
 class CartScreen extends StatelessWidget {
-  const CartScreen({Key? key}) : super(key: key);
+  const CartScreen({super.key});
   final bool isEmpty = false;
 
   @override

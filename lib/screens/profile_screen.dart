@@ -2,13 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:provider/provider.dart';
 import 'package:shopsmart_user/providers/theme_provider.dart';
+import 'package:shopsmart_user/screens/inner_screen/viewed_recently.dart';
+import 'package:shopsmart_user/screens/inner_screen/wishlist.dart';
 import 'package:shopsmart_user/widgets/app_name_widgets.dart';
 import 'package:shopsmart_user/widgets/subtitle_text.dart';
 import 'package:shopsmart_user/widgets/title_text.dart';
 import 'package:shopsmart_user/services/assets_manager.dart';
 
 class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({Key? key}) : super(key: key);
+  const ProfileScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -49,9 +51,9 @@ class ProfileScreen extends StatelessWidget {
                         color: Theme.of(context).colorScheme.surface,
                         width: 3,
                       ),
-                      image: const DecorationImage(
-                        image: AssetImage(
-                          "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png",
+                      image: DecorationImage(
+                        image: NetworkImage(
+                          'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png',
                         ),
                         fit: BoxFit.fill,
                       ),
@@ -88,12 +90,16 @@ class ProfileScreen extends StatelessWidget {
                 CustomListTile(
                   text: "Wishlist",
                   imagePath: AssetsManager.wishlistSvg,
-                  function: () {},
+                  function: () {
+                    Navigator.pushNamed(context, WishlistScreen.routName);
+                  },
                 ),
                 CustomListTile(
                   text: "Viewed recently",
                   imagePath: AssetsManager.recent,
-                  function: () {},
+                  function: () {
+                    Navigator.pushNamed(context, ViewedRecentlyScreen.routName);
+                  },
                 ),
                 CustomListTile(
                   text: "Address",

@@ -4,7 +4,7 @@ import 'package:shopsmart_user/consts/app_constants.dart';
 import 'package:shopsmart_user/screens/inner_screen/product_details.dart';
 
 class ProductWidget extends StatefulWidget {
-  const ProductWidget({Key? key}) : super(key: key);
+  const ProductWidget({super.key});
 
   @override
   _ProductWidgetState createState() => _ProductWidgetState();

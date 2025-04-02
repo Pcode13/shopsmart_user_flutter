@@ -6,7 +6,7 @@ import 'package:shopsmart_user/screens/profile_screen.dart';
 import 'package:shopsmart_user/screens/search_screen.dart';
 
 class RootScreen extends StatefulWidget {
-  const RootScreen({Key? key}) : super(key: key);
+  const RootScreen({super.key});
 
   @override
   _RootScreenState createState() => _RootScreenState();

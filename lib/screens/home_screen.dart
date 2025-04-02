@@ -1,13 +1,11 @@
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:shopsmart_user/consts/app_constants.dart';
 import 'package:shopsmart_user/widgets/products/ctg_rounded_widget.dart';
 import 'package:shopsmart_user/widgets/products/latest_arrival.dart';
 
 import '../services/assets_manager.dart';
 import '../widgets/app_name_widgets.dart';
-import '../widgets/subtitle_text.dart';
 import '../widgets/title_text.dart';
 
 class HomeScreen extends StatelessWidget {
