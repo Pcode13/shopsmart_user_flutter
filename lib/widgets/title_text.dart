@@ -6,7 +6,7 @@ class TitlesTextWidget extends StatelessWidget {
     required this.label,
     this.fontSize = 20,
     this.color,
-    this.maxLines,
+    this.maxLines,c
   }) : super(key: key);
 
   final String label;
