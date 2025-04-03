@@ -47,6 +47,7 @@ class MyAppFunctions {
                   ),
                   TextButton(
                     onPressed: () {
+                      fct();
                       Navigator.pop(context);
                     },
                     child: const SubtitleTextWidget(
