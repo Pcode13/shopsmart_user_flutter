@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:shopsmart_user/models/product_model.dart';
+import 'package:provider/provider.dart';
+
+import 'package:shopsmart_user/providers/products_provider.dart';
 
 import '../services/assets_manager.dart';
 import '../widgets/products/product_widget.dart';
@@ -30,6 +32,7 @@ class _SearchScreenState extends State<SearchScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final productsProvider = Provider.of<ProductsProvider>(context);
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
@@ -74,13 +77,12 @@ class _SearchScreenState extends State<SearchScreen> {
                 child: DynamicHeightGridView(
                   mainAxisSpacing: 12,
                   crossAxisSpacing: 12,
-                  itemCount: ProductModel.products.length,
+                  itemCount: productsProvider.getProducts.length,
                   crossAxisCount: 2,
                   builder: (context, index) {
-                    return ProductWidget(
-                      image: ProductModel.products[index].productImage,
-                      price: ProductModel.products[index].productPrice,
-                      title: ProductModel.products[index].productTitle,
+                    return ChangeNotifierProvider.value(
+                      value: productsProvider.getProducts[index],
+                      child: const ProductWidget(),
                     );
                   },
                 ),
