@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:provider/provider.dart';
 import 'package:shopsmart_user/providers/theme_provider.dart';
+import 'package:shopsmart_user/screens/auth/login.dart';
+import 'package:shopsmart_user/screens/inner_screen/orders/orders_screen.dart';
 import 'package:shopsmart_user/screens/inner_screen/viewed_recently.dart';
 import 'package:shopsmart_user/screens/inner_screen/wishlist.dart';
 import 'package:shopsmart_user/services/my_app_functions.dart';
@@ -86,7 +88,9 @@ class ProfileScreen extends StatelessWidget {
                 CustomListTile(
                   text: "All Order",
                   imagePath: AssetsManager.orderSvg,
-                  function: () {},
+                  function: () {
+                    Navigator.pushNamed(context, OrdersScreenFree.routeName);
+                  },
                 ),
                 CustomListTile(
                   text: "Wishlist",
@@ -133,13 +137,16 @@ class ProfileScreen extends StatelessWidget {
                   borderRadius: BorderRadius.circular(30.0),
                 ),
               ),
-              onPressed: () async {
-                await MyAppFunctions.showErrorOrWarningDialog(
-                  context: context,
-                  subtitle: "Are you sure you want to signout",
-                  fct: () {},
-                  isError: true,
-                );
+              onPressed: () {
+                Navigator.pushNamed(context, LoginScreen.routeName);
+                // await MyAppFunctions.showErrorOrWarningDialog(
+                //   context: context,
+                //   subtitle: "Are you sure you want to signout",
+                //   fct: () {
+                //     Navigator.pushNamed(context, LoginScreen.routeName);
+                //   },
+                //   isError: true,
+                // );
               },
               icon: const Icon(Icons.login),
               label: const Text("Login"),

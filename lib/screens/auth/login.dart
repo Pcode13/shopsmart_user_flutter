@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:shopsmart_user/consts/validator.dart';
+import 'package:shopsmart_user/root_screen.dart';
+import 'package:shopsmart_user/screens/auth/forgot_password.dart';
 import 'package:shopsmart_user/screens/auth/register.dart';
 import 'package:shopsmart_user/widgets/app_name_widgets.dart';
 import 'package:shopsmart_user/widgets/subtitle_text.dart';
@@ -9,6 +11,7 @@ import 'package:shopsmart_user/widgets/title_text.dart';
 import '../../widgets/auth/google_btn.dart';
 
 class LoginScreen extends StatefulWidget {
+  static const routeName = '/LoginScreen';
   const LoginScreen({super.key});
 
   @override
@@ -128,7 +131,11 @@ class _LoginScreenState extends State<LoginScreen> {
                       Align(
                         alignment: Alignment.centerRight,
                         child: TextButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.of(
+                              context,
+                            ).pushNamed(ForgotPasswordScreen.routeName);
+                          },
                           child: const SubtitleTextWidget(
                             label: "Forgot password?",
                             fontStyle: FontStyle.italic,
@@ -183,7 +190,11 @@ class _LoginScreenState extends State<LoginScreen> {
                                     ),
                                   ),
                                   child: const Text("Guest?"),
-                                  onPressed: () async {},
+                                  onPressed: () async {
+                                    Navigator.of(
+                                      context,
+                                    ).pushNamed(RootScreen.routeName);
+                                  },
                                 ),
                               ),
                             ),
@@ -202,8 +213,9 @@ class _LoginScreenState extends State<LoginScreen> {
                               textDecoration: TextDecoration.underline,
                             ),
                             onPressed: () {
-                              Navigator.of(context)
-                                  .pushNamed(RegisterScreen.routName);
+                              Navigator.of(
+                                context,
+                              ).pushNamed(RegisterScreen.routName);
                             },
                           ),
                         ],

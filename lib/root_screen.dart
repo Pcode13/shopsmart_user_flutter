@@ -6,6 +6,7 @@ import 'package:shopsmart_user/screens/profile_screen.dart';
 import 'package:shopsmart_user/screens/search_screen.dart';
 
 class RootScreen extends StatefulWidget {
+  static const routeName = '/RootScreen';
   const RootScreen({super.key});
 
   @override
@@ -14,7 +15,7 @@ class RootScreen extends StatefulWidget {
 
 class _RootScreenState extends State<RootScreen> {
   late List<Widget> screens;
-  int currentScreen = 3;
+  int currentScreen = 0;
   late PageController controller;
 
   @override

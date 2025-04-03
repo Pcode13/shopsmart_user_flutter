@@ -3,8 +3,10 @@ import 'package:provider/provider.dart';
 import 'package:shopsmart_user/consts/theme_data.dart';
 import 'package:shopsmart_user/providers/theme_provider.dart';
 import 'package:shopsmart_user/root_screen.dart';
+import 'package:shopsmart_user/screens/auth/forgot_password.dart';
 import 'package:shopsmart_user/screens/auth/login.dart';
 import 'package:shopsmart_user/screens/auth/register.dart';
+import 'package:shopsmart_user/screens/inner_screen/orders/orders_screen.dart';
 import 'package:shopsmart_user/screens/inner_screen/product_details.dart';
 import 'package:shopsmart_user/screens/inner_screen/viewed_recently.dart';
 import 'package:shopsmart_user/screens/inner_screen/wishlist.dart';
@@ -35,15 +37,19 @@ class MyApp extends StatelessWidget {
               isDarkTheme: themeProvider.getIsDarkTheme,
               context: context,
             ),
-            // home: RootScreen(),
-            home: LoginScreen(),
+            home: RootScreen(),
             routes: {
+              RootScreen.routeName: (context) => const RootScreen(),
               ProductDetailsScreen.routName:
                   (context) => const ProductDetailsScreen(),
               WishlistScreen.routName: (context) => const WishlistScreen(),
               ViewedRecentlyScreen.routName:
                   (context) => const ViewedRecentlyScreen(),
               RegisterScreen.routName: (context) => const RegisterScreen(),
+              LoginScreen.routeName: (context) => const LoginScreen(),
+              OrdersScreenFree.routeName: (context) => const OrdersScreenFree(),
+              ForgotPasswordScreen.routeName:
+                  (context) => const ForgotPasswordScreen(),
             },
           );
         },
