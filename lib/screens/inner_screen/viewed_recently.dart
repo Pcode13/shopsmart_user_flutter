@@ -9,7 +9,7 @@ import '../../widgets/products/product_widget.dart';
 class ViewedRecentlyScreen extends StatelessWidget {
   static const routName = "/ViewedRecentlyScreen";
   const ViewedRecentlyScreen({super.key});
-  final bool isEmpty = true;
+  final bool isEmpty = false;
   @override
   Widget build(BuildContext context) {
     return isEmpty
@@ -43,7 +43,7 @@ class ViewedRecentlyScreen extends StatelessWidget {
             mainAxisSpacing: 12,
             crossAxisSpacing: 12,
             builder: (context, index) {
-              return const ProductWidget();
+              return const ProductWidget(productId: "");
             },
             itemCount: 200,
             crossAxisCount: 2,

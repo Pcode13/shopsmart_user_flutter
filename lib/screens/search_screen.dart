@@ -1,6 +1,7 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import 'package:shopsmart_user/providers/products_provider.dart';
 
 import '../services/assets_manager.dart';
@@ -56,16 +57,16 @@ class _SearchScreenState extends State<SearchScreen> {
                   prefixIcon: const Icon(Icons.search),
                   suffixIcon: GestureDetector(
                     onTap: () {
-                      setState(() {
-                        FocusScope.of(context).unfocus();
-                        searchTextController.clear();
-                      });
+                      // setState(() {
+                      FocusScope.of(context).unfocus();
+                      searchTextController.clear();
+                      // });
                     },
                     child: const Icon(Icons.clear, color: Colors.red),
                   ),
                 ),
                 onChanged: (value) {
-                  // log("value of the text is $value");
+                  log("value of the text is $value");
                 },
                 onSubmitted: (value) {
                   // log("value of the text is $value");
@@ -75,14 +76,13 @@ class _SearchScreenState extends State<SearchScreen> {
               const SizedBox(height: 15.0),
               Expanded(
                 child: DynamicHeightGridView(
-                  mainAxisSpacing: 12,
-                  crossAxisSpacing: 12,
                   itemCount: productsProvider.getProducts.length,
                   crossAxisCount: 2,
+                  mainAxisSpacing: 12,
+                  crossAxisSpacing: 12,
                   builder: (context, index) {
-                    return ChangeNotifierProvider.value(
-                      value: productsProvider.getProducts[index],
-                      child: const ProductWidget(),
+                    return ProductWidget(
+                      productId: productsProvider.getProducts[index].productId,
                     );
                   },
                 ),
