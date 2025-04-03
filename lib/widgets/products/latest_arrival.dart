@@ -1,11 +1,13 @@
-import 'dart:developer';
-
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_iconly/flutter_iconly.dart';
+import 'package:provider/provider.dart';
 
 import '../../consts/app_constants.dart';
+import '../../models/product_model.dart';
+import '../../providers/cart_provider.dart';
+import '../../screens/inner_screen/product_details.dart';
 import '../subtitle_text.dart';
+import 'heart_btn.dart';
 
 class LatestArrivalProductsWidget extends StatelessWidget {
   const LatestArrivalProductsWidget({super.key});
@@ -13,11 +15,17 @@ class LatestArrivalProductsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    final productsModel = Provider.of<ProductModel>(context);
+    final cartProvider = Provider.of<CartProvider>(context);
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: GestureDetector(
-        onTap: () {
-          log("ToDo add the navigate to the product details screen");
+        onTap: () async {
+          await Navigator.pushNamed(
+            context,
+            ProductDetailsScreen.routName,
+            arguments: productsModel.productId,
+          );
         },
         child: SizedBox(
           width: size.width * 0.45,
@@ -28,53 +36,53 @@ class LatestArrivalProductsWidget extends StatelessWidget {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(12.0),
                   child: FancyShimmerImage(
-                    imageUrl: AppConstants.imageUrl,
+                    imageUrl: productsModel.productImage,
                     height: size.width * 0.24,
                     width: size.width * 0.32,
                   ),
                 ),
               ),
-              const SizedBox(
-                width: 8,
-              ),
+              const SizedBox(width: 8),
               Flexible(
                 child: Column(
                   children: [
-                    const SizedBox(
-                      height: 5,
-                    ),
+                    const SizedBox(height: 5),
                     Text(
-                      "Title" * 15,
+                      productsModel.productTitle,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                     ),
-                    const SizedBox(
-                      height: 5,
-                    ),
+                    const SizedBox(height: 5),
                     FittedBox(
                       child: Row(
                         children: [
+                          const HeartButtonWidget(),
                           IconButton(
-                            onPressed: () {},
-                            icon: const Icon(
-                              IconlyLight.heart,
-                            ),
-                          ),
-                          IconButton(
-                            onPressed: () {},
-                            icon: const Icon(
-                              Icons.add_shopping_cart,
+                            onPressed: () {
+                              if (cartProvider.isProdinCart(
+                                productId: productsModel.productId,
+                              )) {
+                                return;
+                              }
+                              cartProvider.addProductToCart(
+                                productId: productsModel.productId,
+                              );
+                            },
+                            icon: Icon(
+                              cartProvider.isProdinCart(
+                                    productId: productsModel.productId,
+                                  )
+                                  ? Icons.check
+                                  : Icons.add_shopping_cart_outlined,
                             ),
                           ),
                         ],
                       ),
                     ),
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    const FittedBox(
+                    const SizedBox(height: 5),
+                    FittedBox(
                       child: SubtitleTextWidget(
-                        label: "1550.00\$",
+                        label: "${productsModel.productPrice}\$",
                         fontWeight: FontWeight.w600,
                         color: Colors.blue,
                       ),
