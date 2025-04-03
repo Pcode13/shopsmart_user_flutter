@@ -14,16 +14,22 @@ class PickImageWidget extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.all(10.0),
           child: ClipRRect(
-            borderRadius: BorderRadius.circular(18.0),
-            child:
-                pickedImage == null
-                    ? Container(
-                      decoration: BoxDecoration(
-                        border: Border.all(),
-                        borderRadius: BorderRadius.circular(18.0),
+            borderRadius: BorderRadius.circular(
+              18.0,
+            ),
+            child: pickedImage == null
+                ? Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.grey),
+                      borderRadius: BorderRadius.circular(
+                        18.0,
                       ),
-                    )
-                    : Image.file(File(pickedImage!.path), fit: BoxFit.fill),
+                    ),
+                  )
+                : Image.file(
+                    File(pickedImage!.path),
+                    fit: BoxFit.fill,
+                  ),
           ),
         ),
         Positioned(

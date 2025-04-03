@@ -1,13 +1,12 @@
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shopsmart_user/widgets/app_name_widgets.dart';
 import 'package:shopsmart_user/widgets/title_text.dart';
 
 import '../../consts/app_constants.dart';
 import '../../providers/cart_provider.dart';
 import '../../providers/products_provider.dart';
-
+import '../../widgets/app_name_text.dart';
 import '../../widgets/products/heart_btn.dart';
 import '../../widgets/subtitle_text.dart';
 
@@ -40,7 +39,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
           icon: const Icon(Icons.arrow_back_ios, size: 20),
         ),
         // automaticallyImplyLeading: false,
-        title: const AppNameWidgets(fontSize: 20),
+        title: const AppNameTextWidget(fontSize: 20),
       ),
       body:
           getCurrProduct == null
@@ -88,6 +87,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                               children: [
                                 HeartButtonWidget(
                                   bkgColor: Colors.blue.shade100,
+                                  productId: getCurrProduct.productId,
                                 ),
                                 const SizedBox(width: 20),
                                 Expanded(

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shopsmart_user/models/cart_model.dart';
 import 'package:shopsmart_user/providers/products_provider.dart';
-
 import 'package:uuid/uuid.dart';
 
 class CartProvider with ChangeNotifier {

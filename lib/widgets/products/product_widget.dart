@@ -1,6 +1,7 @@
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shopsmart_user/models/product_model.dart';
 import 'package:shopsmart_user/screens/inner_screen/product_details.dart';
 import 'package:shopsmart_user/widgets/subtitle_text.dart';
 import 'package:shopsmart_user/widgets/title_text.dart';
@@ -8,6 +9,7 @@ import 'package:shopsmart_user/widgets/title_text.dart';
 import '../../consts/app_constants.dart';
 import '../../providers/cart_provider.dart';
 import '../../providers/products_provider.dart';
+import '../../providers/viewed_recently_provider.dart';
 import 'heart_btn.dart';
 
 class ProductWidget extends StatefulWidget {
@@ -25,12 +27,17 @@ class _ProductWidgetState extends State<ProductWidget> {
     final getCurrProduct = productsProvider.findByProdId(widget.productId);
     final cartProvider = Provider.of<CartProvider>(context);
     Size size = MediaQuery.of(context).size;
+    final viewedProdProvider = Provider.of<ViewedProdProvider>(context);
+
     return getCurrProduct == null
         ? const SizedBox.shrink()
         : Padding(
           padding: const EdgeInsets.all(0.0),
           child: GestureDetector(
             onTap: () async {
+              viewedProdProvider.addViewedProd(
+                productId: getCurrProduct.productId,
+              );
               await Navigator.pushNamed(
                 context,
                 ProductDetailsScreen.routName,
@@ -60,7 +67,12 @@ class _ProductWidgetState extends State<ProductWidget> {
                           maxLines: 2,
                         ),
                       ),
-                      const Flexible(flex: 2, child: HeartButtonWidget()),
+                      Flexible(
+                        flex: 2,
+                        child: HeartButtonWidget(
+                          productId: getCurrProduct.productId,
+                        ),
+                      ),
                     ],
                   ),
                 ),

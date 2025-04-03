@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
-import 'package:shopsmart_user/widgets/app_name_widgets.dart';
 import '../../consts/validator.dart';
 import '../../services/assets_manager.dart';
+import '../../widgets/app_name_text.dart';
 import '../../widgets/subtitle_text.dart';
 import '../../widgets/title_text.dart';
 
@@ -44,7 +44,9 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: const AppNameWidgets(fontSize: 22),
+        title: const AppNameTextWidget(
+          fontSize: 22,
+        ),
       ),
       body: GestureDetector(
         onTap: () {
@@ -57,20 +59,29 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
             physics: const BouncingScrollPhysics(),
             children: [
               // Section 1 - Header
-              const SizedBox(height: 10),
+              const SizedBox(
+                height: 10,
+              ),
               Image.asset(
                 AssetsManager.forgotPassword,
                 width: size.width * 0.6,
                 height: size.width * 0.6,
               ),
-              const SizedBox(height: 10),
-              const TitlesTextWidget(label: 'Forgot password', fontSize: 22),
+              const SizedBox(
+                height: 10,
+              ),
+              const TitlesTextWidget(
+                label: 'Forgot password',
+                fontSize: 22,
+              ),
               const SubtitleTextWidget(
                 label:
                     'Please enter the email address you\'d like your password reset information sent to',
                 fontSize: 14,
               ),
-              const SizedBox(height: 40),
+              const SizedBox(
+                height: 40,
+              ),
 
               Form(
                 key: _formKey,
@@ -97,7 +108,9 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                 ),
               ),
 
-              const SizedBox(height: 20),
+              const SizedBox(
+                height: 20,
+              ),
 
               SizedBox(
                 width: double.infinity,
@@ -106,13 +119,17 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                     padding: const EdgeInsets.all(12),
                     // backgroundColor: Colors.red,
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
+                      borderRadius: BorderRadius.circular(
+                        10,
+                      ),
                     ),
                   ),
                   icon: const Icon(IconlyBold.send),
                   label: const Text(
                     "Request link",
-                    style: TextStyle(fontSize: 20),
+                    style: TextStyle(
+                      fontSize: 20,
+                    ),
                   ),
                   onPressed: () async {
                     _forgetPassFCT();

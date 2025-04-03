@@ -16,19 +16,19 @@ class ProductsProvider with ChangeNotifier {
   }
 
   List<ProductModel> findByCategory({required String categoryName}) {
-    List<ProductModel> categoryList =
-        products
-            .where(
-              (element) => element.productCategory.toLowerCase().contains(
+    List<ProductModel> categoryList = products
+        .where(
+          (element) => element.productCategory.toLowerCase().contains(
                 categoryName.toLowerCase(),
               ),
-            )
-            .toList();
+        )
+        .toList();
     return categoryList;
   }
 
-   List<ProductModel> searchQuery({required String searchText, required List<ProductModel> passedList}) {
-    List<ProductModel> searchList = products
+  List<ProductModel> searchQuery(
+      {required String searchText, required List<ProductModel> passedList}) {
+    List<ProductModel> searchList = passedList
         .where(
           (element) => element.productTitle.toLowerCase().contains(
                 searchText.toLowerCase(),

@@ -2,13 +2,12 @@ import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shopsmart_user/consts/app_constants.dart';
-import 'package:shopsmart_user/widgets/app_name_widgets.dart';
 import 'package:shopsmart_user/widgets/products/ctg_rounded_widget.dart';
 import 'package:shopsmart_user/widgets/products/latest_arrival.dart';
 
 import '../providers/products_provider.dart';
 import '../services/assets_manager.dart';
-
+import '../widgets/app_name_text.dart';
 import '../widgets/title_text.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -24,7 +23,7 @@ class HomeScreen extends StatelessWidget {
           padding: const EdgeInsets.all(8.0),
           child: Image.asset(AssetsManager.shoppingCart),
         ),
-        title: const AppNameWidgets(fontSize: 20),
+        title: const AppNameTextWidget(fontSize: 20),
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),

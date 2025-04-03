@@ -2,12 +2,13 @@ import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:provider/provider.dart';
+import 'package:shopsmart_user/consts/app_constants.dart';
 import 'package:shopsmart_user/models/cart_model.dart';
-import 'package:shopsmart_user/providers/cart_provider.dart';
 import 'package:shopsmart_user/screens/cart/quantity_btm_sheet.dart';
 import 'package:shopsmart_user/widgets/subtitle_text.dart';
 import 'package:shopsmart_user/widgets/title_text.dart';
 
+import '../../providers/cart_provider.dart';
 import '../../providers/products_provider.dart';
 import '../../widgets/products/heart_btn.dart';
 
@@ -64,7 +65,9 @@ class CartWidget extends StatelessWidget {
                                     color: Colors.red,
                                   ),
                                 ),
-                                const HeartButtonWidget(),
+                                HeartButtonWidget(
+                                  productId: getCurrProduct.productId,
+                                ),
                               ],
                             ),
                           ],

@@ -1,17 +1,14 @@
 import 'package:flutter/material.dart';
-// import 'package:flutter/src/widgets/framework.dart';
-// import 'package:flutter/src/widgets/placeholder.dart';
 
 class SubtitleTextWidget extends StatelessWidget {
-  const SubtitleTextWidget({
-    super.key,
-    required this.label,
-    this.fontSize = 18,
-    this.fontStyle = FontStyle.normal,
-    this.fontWeight = FontWeight.normal,
-    this.color,
-    this.textDecoration = TextDecoration.none,
-  });
+  const SubtitleTextWidget(
+      {super.key,
+      required this.label,
+      this.fontSize = 18,
+      this.fontStyle = FontStyle.normal,
+      this.fontWeight = FontWeight.normal,
+      this.color,
+      this.textDecoration = TextDecoration.none});
 
   final String label;
   final double fontSize;

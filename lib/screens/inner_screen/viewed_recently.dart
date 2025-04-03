@@ -1,9 +1,11 @@
 import 'package:dynamic_height_grid_view/dynamic_height_grid_view.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:shopsmart_user/services/assets_manager.dart';
 import 'package:shopsmart_user/widgets/empty_bag.dart';
 import 'package:shopsmart_user/widgets/title_text.dart';
 
+import '../../providers/viewed_recently_provider.dart';
 import '../../widgets/products/product_widget.dart';
 
 class ViewedRecentlyScreen extends StatelessWidget {
@@ -12,7 +14,9 @@ class ViewedRecentlyScreen extends StatelessWidget {
   final bool isEmpty = false;
   @override
   Widget build(BuildContext context) {
-    return isEmpty
+    final viewedProdProvider = Provider.of<ViewedProdProvider>(context);
+
+    return viewedProdProvider.getViewedProds.isEmpty
         ? Scaffold(
           body: EmptyBagWidget(
             imagePath: AssetsManager.orderBag,
@@ -28,7 +32,10 @@ class ViewedRecentlyScreen extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: Image.asset(AssetsManager.shoppingCart),
             ),
-            title: const TitlesTextWidget(label: "Viewed recently (6)"),
+            title: TitlesTextWidget(
+              label:
+                  "Viewed recently (${viewedProdProvider.getViewedProds.length})",
+            ),
             actions: [
               IconButton(
                 onPressed: () {},
@@ -43,9 +50,17 @@ class ViewedRecentlyScreen extends StatelessWidget {
             mainAxisSpacing: 12,
             crossAxisSpacing: 12,
             builder: (context, index) {
-              return const ProductWidget(productId: "");
+              return Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ProductWidget(
+                  productId:
+                      viewedProdProvider.getViewedProds.values
+                          .toList()[index]
+                          .productId,
+                ),
+              );
             },
-            itemCount: 200,
+            itemCount: viewedProdProvider.getViewedProds.length,
             crossAxisCount: 2,
           ),
         );

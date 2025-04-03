@@ -3,7 +3,7 @@ import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:shopsmart_user/consts/validator.dart';
 import 'package:shopsmart_user/services/my_app_functions.dart';
-import 'package:shopsmart_user/widgets/app_name_widgets.dart';
+import 'package:shopsmart_user/widgets/app_name_text.dart';
 import 'package:shopsmart_user/widgets/subtitle_text.dart';
 import 'package:shopsmart_user/widgets/title_text.dart';
 
@@ -101,7 +101,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               children: [
                 // const BackButton(),
                 const SizedBox(height: 60),
-                const AppNameWidgets(fontSize: 30),
+                const AppNameTextWidget(fontSize: 30),
                 const SizedBox(height: 30),
                 const Align(
                   alignment: Alignment.centerLeft,

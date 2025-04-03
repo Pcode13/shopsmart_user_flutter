@@ -4,7 +4,7 @@ import 'package:shopsmart_user/consts/validator.dart';
 import 'package:shopsmart_user/root_screen.dart';
 import 'package:shopsmart_user/screens/auth/forgot_password.dart';
 import 'package:shopsmart_user/screens/auth/register.dart';
-import 'package:shopsmart_user/widgets/app_name_widgets.dart';
+import 'package:shopsmart_user/widgets/app_name_text.dart';
 import 'package:shopsmart_user/widgets/subtitle_text.dart';
 import 'package:shopsmart_user/widgets/title_text.dart';
 
@@ -67,7 +67,7 @@ class _LoginScreenState extends State<LoginScreen> {
             child: Column(
               children: [
                 const SizedBox(height: 60),
-                const AppNameWidgets(fontSize: 30),
+                const AppNameTextWidget(fontSize: 30),
                 const SizedBox(height: 16),
                 const Align(
                   alignment: Alignment.centerLeft,

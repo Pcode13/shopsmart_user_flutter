@@ -5,7 +5,6 @@ import 'package:provider/provider.dart';
 import 'package:shopsmart_user/models/cart_model.dart';
 import 'package:shopsmart_user/widgets/subtitle_text.dart';
 
-
 import '../../providers/cart_provider.dart';
 
 class QuantityBottomSheetWidget extends StatelessWidget {
@@ -17,9 +16,7 @@ class QuantityBottomSheetWidget extends StatelessWidget {
 
     return Column(
       children: [
-        const SizedBox(
-          height: 20,
-        ),
+        const SizedBox(height: 20),
         Container(
           height: 6,
           width: 50,
@@ -28,28 +25,30 @@ class QuantityBottomSheetWidget extends StatelessWidget {
             color: Colors.grey,
           ),
         ),
-        const SizedBox(
-          height: 20,
-        ),
+        const SizedBox(height: 20),
         Expanded(
           child: ListView.builder(
-              // physics: NeverScrollableScrollPhysics(),
-              // shrinkWrap: true,
-              itemCount: 25,
-              itemBuilder: (context, index) {
-                return InkWell(
-                  onTap: () {
-                    cartProvider.updateQty(
-                        productId: cartModel.productId, qty: index + 1);
-                    Navigator.pop(context);
-                  },
-                  child: Center(
-                      child: Padding(
+            // physics: NeverScrollableScrollPhysics(),
+            // shrinkWrap: true,
+            itemCount: 25,
+            itemBuilder: (context, index) {
+              return InkWell(
+                onTap: () {
+                  cartProvider.updateQty(
+                    productId: cartModel.productId,
+                    qty: index + 1,
+                  );
+                  Navigator.pop(context);
+                },
+                child: Center(
+                  child: Padding(
                     padding: const EdgeInsets.all(4.0),
                     child: SubtitleTextWidget(label: "${index + 1}"),
-                  )),
-                );
-              }),
+                  ),
+                ),
+              );
+            },
+          ),
         ),
       ],
     );

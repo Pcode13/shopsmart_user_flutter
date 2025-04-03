@@ -18,16 +18,18 @@ class _OrdersScreenFreeState extends State<OrdersScreenFree> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const TitlesTextWidget(label: 'Placed orders')),
-      body:
-          isEmptyOrders
-              ? EmptyBagWidget(
+        appBar: AppBar(
+          title: const TitlesTextWidget(
+            label: 'Placed orders',
+          ),
+        ),
+        body: isEmptyOrders
+            ? EmptyBagWidget(
                 imagePath: AssetsManager.orderBag,
                 title: "No orders has been placed yet",
                 subtitle: "",
-                buttonText: "Shop now",
-              )
-              : ListView.separated(
+                buttonText: "Shop now")
+            : ListView.separated(
                 itemCount: 15,
                 itemBuilder: (ctx, index) {
                   return const Padding(
@@ -37,11 +39,10 @@ class _OrdersScreenFreeState extends State<OrdersScreenFree> {
                 },
                 separatorBuilder: (BuildContext context, int index) {
                   return const Divider(
-                    // thickness: 8,
-                    // color: Colors.red,
-                  );
+                      // thickness: 8,
+                      // color: Colors.red,
+                      );
                 },
-              ),
-    );
+              ));
   }
 }

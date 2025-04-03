@@ -45,18 +45,20 @@ class _OrdersWidgetFreeState extends State<OrdersWidgetFree> {
                         ),
                       ),
                       IconButton(
-                        onPressed: () {},
-                        icon: const Icon(
-                          Icons.clear,
-                          color: Colors.red,
-                          size: 22,
-                        ),
-                      ),
+                          onPressed: () {},
+                          icon: const Icon(
+                            Icons.clear,
+                            color: Colors.red,
+                            size: 22,
+                          )),
                     ],
                   ),
                   const Row(
                     children: [
-                      TitlesTextWidget(label: 'Price:  ', fontSize: 15),
+                      TitlesTextWidget(
+                        label: 'Price:  ',
+                        fontSize: 15,
+                      ),
                       Flexible(
                         child: SubtitleTextWidget(
                           label: "11.99 \$",
@@ -66,9 +68,16 @@ class _OrdersWidgetFreeState extends State<OrdersWidgetFree> {
                       ),
                     ],
                   ),
-                  const SizedBox(height: 5),
-                  const SubtitleTextWidget(label: "Qty: 10", fontSize: 15),
-                  const SizedBox(height: 5),
+                  const SizedBox(
+                    height: 5,
+                  ),
+                  const SubtitleTextWidget(
+                    label: "Qty: 10",
+                    fontSize: 15,
+                  ),
+                  const SizedBox(
+                    height: 5,
+                  ),
                 ],
               ),
             ),
