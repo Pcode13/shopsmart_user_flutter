@@ -2,10 +2,12 @@ import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:shopsmart_user/consts/app_constants.dart';
 import 'package:shopsmart_user/screens/inner_screen/product_details.dart';
+import 'package:shopsmart_user/widgets/subtitle_text.dart';
+import 'package:shopsmart_user/widgets/title_text.dart';
 
 class ProductWidget extends StatefulWidget {
-  const ProductWidget({super.key});
-
+  const ProductWidget({super.key, this.image, this.title, this.price});
+  final String? image, title, price;
   @override
   _ProductWidgetState createState() => _ProductWidgetState();
 }
@@ -24,7 +26,7 @@ class _ProductWidgetState extends State<ProductWidget> {
             ClipRRect(
               borderRadius: BorderRadius.circular(12.0),
               child: FancyShimmerImage(
-                imageUrl: AppConstants.imageUrl,
+                imageUrl: widget.image ?? AppConstants.imageUrl,
                 height: 200,
                 width: double.infinity,
                 boxFit: BoxFit.cover,
@@ -37,9 +39,9 @@ class _ProductWidgetState extends State<ProductWidget> {
                 children: [
                   Flexible(
                     flex: 5,
-                    child: Text(
-                      "Product Title",
-                      style: TextStyle(fontSize: 18),
+                    child: TitlesTextWidget(
+                      label: widget.title ?? "Title " * 10,
+                      fontSize: 18,
                       maxLines: 2,
                     ),
                   ),
@@ -60,9 +62,10 @@ class _ProductWidgetState extends State<ProductWidget> {
                 children: [
                   Flexible(
                     flex: 5,
-                    child: Text(
-                      "\$99.99",
-                      style: TextStyle(fontSize: 16, color: Colors.green),
+                    child: SubtitleTextWidget(
+                      label: "${widget.price}\$" ?? "1550.00\$",
+                      fontWeight: FontWeight.w600,
+                      color: Colors.blue,
                     ),
                   ),
                   Flexible(
