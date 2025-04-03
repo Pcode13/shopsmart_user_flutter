@@ -6,6 +6,7 @@ import 'package:shopsmart_user/widgets/subtitle_text.dart';
 import 'package:shopsmart_user/widgets/title_text.dart';
 
 import '../../consts/app_constants.dart';
+import '../../providers/cart_provider.dart';
 import '../../providers/products_provider.dart';
 import 'heart_btn.dart';
 
@@ -22,6 +23,7 @@ class _ProductWidgetState extends State<ProductWidget> {
     // final productModelProvider = Provider.of<ProductModel>(context);
     final productsProvider = Provider.of<ProductsProvider>(context);
     final getCurrProduct = productsProvider.findByProdId(widget.productId);
+    final cartProvider = Provider.of<CartProvider>(context);
     Size size = MediaQuery.of(context).size;
     return getCurrProduct == null
         ? const SizedBox.shrink()
@@ -82,13 +84,27 @@ class _ProductWidgetState extends State<ProductWidget> {
                           color: Colors.lightBlue,
                           child: InkWell(
                             borderRadius: BorderRadius.circular(12.0),
-                            onTap: () {},
+                            onTap: () {
+                              if (cartProvider.isProdinCart(
+                                productId: getCurrProduct.productId,
+                              )) {
+                                return;
+                              }
+                              cartProvider.addProductToCart(
+                                productId: getCurrProduct.productId,
+                              );
+                            },
                             splashColor: Colors.red,
-                            child: const Padding(
-                              padding: EdgeInsets.all(6.0),
+                            child: Padding(
+                              padding: const EdgeInsets.all(6.0),
                               child: Icon(
-                                Icons.add_shopping_cart_outlined,
+                                cartProvider.isProdinCart(
+                                      productId: getCurrProduct.productId,
+                                    )
+                                    ? Icons.check
+                                    : Icons.add_shopping_cart_outlined,
                                 size: 20,
+                                color: Colors.white,
                               ),
                             ),
                           ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shopsmart_user/consts/theme_data.dart';
+import 'package:shopsmart_user/providers/cart_provider.dart';
 import 'package:shopsmart_user/providers/products_provider.dart';
 import 'package:shopsmart_user/providers/theme_provider.dart';
 import 'package:shopsmart_user/root_screen.dart';
@@ -34,6 +35,9 @@ class MyApp extends StatelessWidget {
             return ProductsProvider();
           },
         ),
+          ChangeNotifierProvider(create: (_) {
+          return CartProvider();
+        }),
       ],
       child: Consumer<ThemeProvider>(
         builder: (context, themeProvider, child) {

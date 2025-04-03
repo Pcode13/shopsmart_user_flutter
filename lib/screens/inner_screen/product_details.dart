@@ -5,6 +5,7 @@ import 'package:shopsmart_user/widgets/app_name_widgets.dart';
 import 'package:shopsmart_user/widgets/title_text.dart';
 
 import '../../consts/app_constants.dart';
+import '../../providers/cart_provider.dart';
 import '../../providers/products_provider.dart';
 
 import '../../widgets/products/heart_btn.dart';
@@ -25,6 +26,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
     final productsProvider = Provider.of<ProductsProvider>(context);
     String? productId = ModalRoute.of(context)!.settings.arguments as String?;
     final getCurrProduct = productsProvider.findByProdId(productId!);
+    final cartProvider = Provider.of<CartProvider>(context);
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -100,9 +102,32 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                           ),
                                         ),
                                       ),
-                                      onPressed: () {},
-                                      icon: const Icon(Icons.add_shopping_cart),
-                                      label: const Text("Add to cart"),
+                                      onPressed: () {
+                                        if (cartProvider.isProdinCart(
+                                          productId: getCurrProduct.productId,
+                                        )) {
+                                          return;
+                                        }
+                                        cartProvider.addProductToCart(
+                                          productId: getCurrProduct.productId,
+                                        );
+                                      },
+                                      icon: Icon(
+                                        cartProvider.isProdinCart(
+                                              productId:
+                                                  getCurrProduct.productId,
+                                            )
+                                            ? Icons.check
+                                            : Icons.add_shopping_cart_outlined,
+                                      ),
+                                      label: Text(
+                                        cartProvider.isProdinCart(
+                                              productId:
+                                                  getCurrProduct.productId,
+                                            )
+                                            ? "In cart"
+                                            : "Add to cart",
+                                      ),
                                     ),
                                   ),
                                 ),
