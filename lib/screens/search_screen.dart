@@ -33,6 +33,7 @@ class _SearchScreenState extends State<SearchScreen> {
     super.dispose();
   }
 
+  List<ProductModel> productListSearch = [];
   @override
   Widget build(BuildContext context) {
     final productsProvider = Provider.of<ProductsProvider>(context);
@@ -67,6 +68,7 @@ class _SearchScreenState extends State<SearchScreen> {
                       TextField(
                         controller: searchTextController,
                         decoration: InputDecoration(
+                          hintText: "Search",
                           prefixIcon: const Icon(Icons.search),
                           suffixIcon: GestureDetector(
                             onTap: () {
@@ -78,24 +80,42 @@ class _SearchScreenState extends State<SearchScreen> {
                             child: const Icon(Icons.clear, color: Colors.red),
                           ),
                         ),
-                        onChanged: (value) {
-                          log("value of the text is $value");
-                        },
+                        // onChanged: (value) {
+                        //   setState(() {
+                        //     productListSearch = productsProvider.searchQuery(
+                        //         searchText: searchTextController.text);
+                        //   });
+                        // },
                         onSubmitted: (value) {
-                          // log("value of the text is $value");
-                          // log("value of the controller text: ${searchTextController.text}");
+                          setState(() {
+                            productListSearch = productsProvider.searchQuery(
+                              searchText: searchTextController.text,
+                            );
+                          });
                         },
                       ),
                       const SizedBox(height: 15.0),
+                      if (searchTextController.text.isNotEmpty &&
+                          productListSearch.isEmpty) ...[
+                        const Center(
+                          child: TitlesTextWidget(label: "No products found"),
+                        ),
+                      ],
                       Expanded(
                         child: DynamicHeightGridView(
-                          itemCount: productList.length,
+                          itemCount:
+                              searchTextController.text.isNotEmpty
+                                  ? productListSearch.length
+                                  : productList.length,
                           crossAxisCount: 2,
                           mainAxisSpacing: 12,
                           crossAxisSpacing: 12,
                           builder: (context, index) {
                             return ProductWidget(
-                              productId: productList[index].productId,
+                              productId:
+                                  searchTextController.text.isNotEmpty
+                                      ? productListSearch[index].productId
+                                      : productList[index].productId,
                             );
                           },
                         ),
