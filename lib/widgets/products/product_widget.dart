@@ -29,7 +29,11 @@ class _ProductWidgetState extends State<ProductWidget> {
           padding: const EdgeInsets.all(0.0),
           child: GestureDetector(
             onTap: () async {
-              await Navigator.pushNamed(context, ProductDetailsScreen.routName);
+              await Navigator.pushNamed(
+                context,
+                ProductDetailsScreen.routName,
+                arguments: getCurrProduct.productId,
+              );
             },
             child: Column(
               children: [

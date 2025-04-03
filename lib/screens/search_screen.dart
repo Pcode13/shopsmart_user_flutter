@@ -69,8 +69,7 @@ class _SearchScreenState extends State<SearchScreen> {
                   log("value of the text is $value");
                 },
                 onSubmitted: (value) {
-                  // log("value of the text is $value");
-                  // log("value of the controller text: ${searchTextController.text}");
+                  
                 },
               ),
               const SizedBox(height: 15.0),
