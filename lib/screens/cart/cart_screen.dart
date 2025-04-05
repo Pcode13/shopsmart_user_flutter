@@ -7,7 +7,6 @@ import 'package:shopsmart_user/services/my_app_functions.dart';
 import 'package:shopsmart_user/widgets/empty_bag.dart';
 import 'package:shopsmart_user/widgets/title_text.dart';
 
-import '../../providers/products_provider.dart';
 import 'bottom_checkout.dart';
 
 class CartScreen extends StatelessWidget {

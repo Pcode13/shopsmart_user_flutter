@@ -3,10 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shopsmart_user/providers/viewed_recently_provider.dart';
 
-import '../../consts/app_constants.dart';
 import '../../models/product_model.dart';
 import '../../providers/cart_provider.dart';
-import '../../providers/wishlist_provider.dart';
 import '../../screens/inner_screen/product_details.dart';
 import '../subtitle_text.dart';
 import 'heart_btn.dart';
